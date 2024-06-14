@@ -4,8 +4,14 @@ import time
 import pyautogui
 import subprocess
 
+# Obter o diretório do script atual
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Caminho absoluto para o arquivo .env
+env_path = os.path.join(script_dir, '.env')
+
 # Carregar as variáveis de ambiente do arquivo .env
-load_dotenv()
+load_dotenv(env_path)
 
 def open_chrome_incognito():
     # Lista dos possíveis caminhos para o executável do Chrome
@@ -36,22 +42,29 @@ def login_google():
         print("Não foi possível encontrar o Chrome.")
         return
 
-    time.sleep(3)
+    time.sleep(5)
 
     # Navegar até a página de login do Google
     pyautogui.write('https://accounts.google.com')
     pyautogui.press('enter')
-    time.sleep(3)
+    time.sleep(5)
 
     # Digitar o email e fazer login
     pyautogui.write(email)
     pyautogui.press('enter')
-    time.sleep(3)
+    time.sleep(5)
 
     # Digitar a senha e fazer login
     pyautogui.write(senha)
     pyautogui.press('enter')
-    time.sleep(5)
+    time.sleep(20)
+
+    # Aguardar o redirecionamento e acessar o Google Remote Desktop
+    pyautogui.hotkey('ctrl', 't')
+    time.sleep(1)
+    pyautogui.write('https://remotedesktop.google.com/support/')
+    pyautogui.press('enter')
+    time.sleep(3)
 
 if __name__ == "__main__":
     login_google()

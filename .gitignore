@@ -1,1 +1,6 @@
 .env
+# Ignorar arquivos de configuração do PyInstaller
+*.spec
+# Ignorar pastas build e dist geradas pelo PyInstaller
+build/
+dist/
